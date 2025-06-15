@@ -3,11 +3,7 @@ import { PrismaClient } from "./generated/prisma";
 const prisma = new PrismaClient();
 
 async function main() {
-  const todo = await prisma.todo.create({
-    data: {
-      title: "Buy groceries",
-    },
-  });
+  const todo = await prisma.todo.findMany();
   console.log(todo);
 }
 
