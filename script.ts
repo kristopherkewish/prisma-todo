@@ -3,13 +3,12 @@ import { PrismaClient } from "./generated/prisma";
 const prisma = new PrismaClient();
 
 async function main() {
-  const users = await prisma.user.findMany({
-    include: {
-      todos: true,
-    },
-  });
+  // Delete todos first
+  await prisma.todo.deleteMany();
+  // Then delete users
+  await prisma.user.deleteMany();
 
-  console.dir(users, { depth: null });
+  console.log("Deleted todos and users");
 }
 
 main()
