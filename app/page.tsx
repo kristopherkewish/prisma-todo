@@ -41,6 +41,20 @@ export default async function Home() {
           </div>
         );
       })}
+      <div className="flex gap-2 w-1/4">
+        <Link
+          href="/user/new"
+          className="w-full text-sm bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+        >
+          Create User
+        </Link>
+        <Link
+          href="/todo/new"
+          className="w-full text-sm bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+        >
+          Create Todo
+        </Link>
+      </div>
     </>
   );
 }
