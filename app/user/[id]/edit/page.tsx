@@ -41,10 +41,7 @@ export default async function EditTodo({
     "use server";
 
     await prisma.user.delete({
-      where: { id },
-      include: {
-        todos: true,
-      },
+      where: { id }
     });
 
     revalidatePath("/");
