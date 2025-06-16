@@ -18,7 +18,7 @@ export default async function Home() {
             className="flex flex-col gap-2 border-2 border-gray-300 p-4 rounded-md w-1/4"
           >
             <h2 className="text-lg font-bold bg-gray-200 p-2 rounded-md text-black">
-              {user.name}
+              <Link href={`/user/${user.id}`}>{user.name}</Link>
             </h2>
             <ul className="flex flex-col gap-2">
               {user.todos.map((todo) => (

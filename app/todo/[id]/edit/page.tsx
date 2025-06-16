@@ -20,7 +20,7 @@ export default async function EditTodo({
     notFound();
   }
 
-  async function createPost(formData: FormData) {
+  async function editPost(formData: FormData) {
     "use server";
 
     const title = formData.get("title") as string;
@@ -56,7 +56,7 @@ export default async function EditTodo({
   return (
     <div className="flex flex-col gap-2 border-2 border-gray-300 p-4 rounded-md w-1/4">
       <h1 className="text-2xl font-bold mb-6">Edit Todo</h1>
-      <form action={createPost} className="space-y-4">
+      <form action={editPost} className="space-y-4">
         <div>
           <label htmlFor="title" className="block text-sm font-medium">
             Title
