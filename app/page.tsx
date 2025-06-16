@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import Link from "next/link";
 
 export default async function Home() {
   const users = await prisma.user.findMany({
@@ -6,8 +7,9 @@ export default async function Home() {
       todos: true,
     },
   });
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-4">
+    <>
       <h1 className="text-2xl font-bold">Users</h1>
       {users.map((user) => {
         return (
@@ -20,19 +22,25 @@ export default async function Home() {
             </h2>
             <ul className="flex flex-col gap-2">
               {user.todos.map((todo) => (
-                <li key={todo.id} className="text-sm flex flex-col gap-2">
-                  <div className="flex justify-between">
-                    <span className="font-bold">{todo.title}</span>
-                    <span className="text-sm">
-                      {todo.completed ? "Completed" : "Not Completed"}
-                    </span>
-                  </div>
-                </li>
+                <Link
+                  href={`/todo/${todo.id}`}
+                  key={todo.id}
+                  className="text-sm flex flex-col gap-2"
+                >
+                  <li>
+                    <div className="flex justify-between">
+                      <span className="font-bold">{todo.title}</span>
+                      <span className="text-sm">
+                        {todo.completed ? "Completed" : "Not Completed"}
+                      </span>
+                    </div>
+                  </li>
+                </Link>
               ))}
             </ul>
           </div>
         );
       })}
-    </div>
+    </>
   );
 }
