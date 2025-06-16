@@ -25,6 +25,7 @@ export default async function EditTodo({
 
     const title = formData.get("title") as string;
     const userId = formData.get("userId") as string;
+    const completed = formData.get("completed") === "on";
 
     await prisma.todo.update({
       where: {
@@ -33,6 +34,7 @@ export default async function EditTodo({
       data: {
         title,
         userId: userId ?? undefined,
+        completed,
       },
     });
 
@@ -75,6 +77,18 @@ export default async function EditTodo({
               </option>
             ))}
           </select>
+        </div>
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="completed"
+            name="completed"
+            className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+            defaultChecked={todo.completed}
+          />
+          <label htmlFor="completed" className="text-sm font-medium">
+            Completed
+          </label>
         </div>
         <button
           type="submit"
