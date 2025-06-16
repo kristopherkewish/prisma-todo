@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { notFound } from "next/navigation";
 
 export default async function TodoPage({
   params,
@@ -12,6 +13,10 @@ export default async function TodoPage({
       user: true,
     },
   });
+
+  if (!todo) {
+    notFound();
+  }
 
   return (
     <>
