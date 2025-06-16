@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default async function TodoPage({
@@ -28,9 +29,13 @@ export default async function TodoPage({
         <p className="text-sm">
           {todo?.completed ? "Completed" : "Not Completed"}
         </p>
-        <p className="text-sm">
-          {todo?.user?.name}
-        </p>
+        <p className="text-sm">{todo?.user?.name}</p>
+        <Link
+          href={`/todo/${id}/edit`}
+          className="text-sm bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+        >
+          Edit
+        </Link>
       </div>
     </>
   );
