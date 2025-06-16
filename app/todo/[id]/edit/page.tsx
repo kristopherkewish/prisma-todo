@@ -42,6 +42,17 @@ export default async function EditTodo({
     redirect("/");
   }
 
+  async function deleteTodo() {
+    "use server";
+
+    await prisma.todo.delete({
+      where: { id },
+    });
+
+    revalidatePath("/");
+    redirect("/");
+  }
+
   return (
     <div className="flex flex-col gap-2 border-2 border-gray-300 p-4 rounded-md w-1/4">
       <h1 className="text-2xl font-bold mb-6">Edit Todo</h1>
@@ -95,6 +106,13 @@ export default async function EditTodo({
           className="w-full bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
         >
           Update Todo
+        </button>
+        <button
+          type="button"
+          className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+          onClick={deleteTodo}
+        >
+          Delete Todo
         </button>
       </form>
     </div>
